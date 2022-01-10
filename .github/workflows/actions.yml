@@ -24,7 +24,7 @@ jobs:
         with:
           tag: ${{github.event.inputs.version}}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
       - name: Validate Tag
         run: |
           if [ "${{steps.checkTag.outputs.exists}}" != "false" ]; then
