@@ -15,3 +15,21 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  check-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check tag
+        uses: mukunku/tag-exists-action@v1.0.0
+        id: checkTag
+        with:
+          tag: ${{github.event.inputs.version}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Validate Tag
+        run: |
+          if [ "${{steps.checkTag.outputs.exists}}" != "false" ]; then
+          echo "The tag already exists"
+          exit 1
+          else
+          echo "Tag is valid"
+          fi
