@@ -19,7 +19,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Check tag
-        uses: despegar-test/tag-exists-action@v1.0.0
+        uses: mukunku/tag-exists-action@v1.0.0
         id: checkTag
         with:
           tag: ${{github.event.inputs.version}}
